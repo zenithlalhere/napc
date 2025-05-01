@@ -1,0 +1,3 @@
+f[x_] := x^ 3 - 5 * x + 1;
+Plotf[x], x, - 1, 3 , PlotRange → -5, 5 ,
+PlotStyle → Red, Thick, PlotLabel → "f[x]=" f[x], AxesLabel → x, f[x]
