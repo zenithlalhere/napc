@@ -1,0 +1,38 @@
+m = {{5, 2, 1}, {3, 7, 4}, {1, 1, 9}}
+
+MatrixForm[m]
+
+LUDecomposition[m]
+
+{lu, p, c} = LUDecomposition[m]
+
+{MatrixForm[lu], MatrixForm[p], c}
+
+l = lu * SparseArray[{i_, j_} /; j < i  1, {3, 3}] + IdentityMatrix[3]
+
+MatrixForm[l]
+
+u = lu * SparseArray[{i_, j_} /; j ≥ i  1, {3, 3}]
+
+MatrixForm[u]
+
+l.u
+
+MatrixForm[l.u]
+
+{m // MatrixForm, MatrixForm[l.u], p // MatrixForm}
+
+mat = {{5, 2, 8}, {1, 2, 3}, {3, 4, 1}};
+
+{lu, p, c} = LUDecomposition[mat]
+
+################################################
+
+A = {{5, 2, 1}, {3, 7, 4}, {1, 1, 9}}
+
+b = {{10}, {21}, {12}}
+
+{lu, p, c} = LUDecomposition[A];
+l = lu * SparseArray[{i_, j_} /; j < i  1, {3, 3}] + IdentityMatrix[3];
+MatrixForm[l]
+
