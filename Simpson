@@ -1,0 +1,15 @@
+a = Input["Enter the left end point :"];
+b = Input["Enter the right end point :"];
+n = Input["Enter the number of sub intervals to be formed :"];
+h = (b - a) / n;
+y = Table[a + i * h, {i, 1, n}];
+f[x] := 1 / x;
+sumodd = 0;
+sumeven = 0;
+For[i = 1, i < n, i += 2, sumodd += 4 * f[x] /. x  y〚i〛];
+For[i = 2, i < n, i += 2, sumeven += 2 * f[x] /. x  y〚i〛];
+Sn = (h / 3) * ((f[x] /. x  a) + N[sumodd] + N[sumeven] + (f[x] /. x  b));
+Print["For n=", n, ",Simpson estimate is: ", Sn]
+in = NIntegrate[1 / x, {x, 1, 2}];
+Print["True value is ", in]
+Print["Absolute error is ", Abs[Sn - in]]
