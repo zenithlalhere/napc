@@ -1,0 +1,25 @@
+GaussJacobi[A0_, b0_, X0_, maxiter_] :=
+Module[{A = N[A0], b = N[b0], xk = X0, xk1, i, j, k = 0, n, m, OutputDetails},
+size = Dimensions[A];
+n = size〚1〛;
+m = size〚2〛;
+If[n ≠ m,
+Print ["Not a sqaure matrix , cannot proceed with gauss jacobi method "];
+Return[]];
+OutputDeatils = {xk};
+xk1 = Table[0, {n}];
+While[k < maxiter,
+For[i = 1, i ≤ n, i++, xk1〚i〛= (1 / A〚i, i〛) *
+(b〚i〛- Sum[A〚i, j〛* xk〚j〛, {j, 1, i - 1}] - Sum[A〚i, j〛* xk〚j〛, {j, i + 1, n}]);];
+k++;
+OutputDeatils = Append[OutputDeatils, xk1];
+xk = xk1;];
+colHeading = Table[X[s], {s, 1, n}];
+Print[
+NumberForm[TableForm[OutputDeatils, TableHeadings  {None, colHeading}], 6]];
+Print["no. of iterations performed=", maxiter];
+];
+A = {{5, 1, 2}, {-3, 9, 4}, {1, 2, -7}};
+b = {10, - 14, -33};
+X0 = {0, 0, 0};
+GaussJacobi[A, b, X0, 15]
